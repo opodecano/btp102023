@@ -4,15 +4,15 @@
 define view entity z_c_bookingsuppl_5364
   as projection on z_i_bookingsuppl_5364
 {
-  key TravelId                    as TravelID,
-  key BookingId                   as BookingID,
-  key BookingSupplementId         as BookingSupplementID,
-      SupplementId                as SupplemetID,
+  key travel_id                   as TravelID,
+  key booking_id                  as BookingID,
+  key booking_supplement_id       as BookingSupplementID,
+      supplement_id               as SupplemetID,
       _SupplementText.Description as SupplementDescription : localized,
       @Semantics.amount.currencyCode: 'CurrencyCode'
-      Price                       as Price,
+      price                       as Price,
       @Semantics.currencyCode: true
-      CurrencyCode,
+      currency_code               as CurrencyCode,
       last_changed_at             as LastChangedAt,
       /* Associations */
       _Travel  : redirected to z_c_travel_5364,

@@ -5,23 +5,23 @@
 define view z_i_booking_5364
   as select from zbooking_5364 as Booking
   composition [0..*] of z_i_bookingsuppl_5364 as _BookingSupplement
-  association        to parent z_i_travel_5364       as _Travel on $projection.TravelId = _Travel.travel_id
-  association [1..1] to /DMO/I_Customer       as _Customer      on $projection.CustomerId = _Customer.CustomerID
-  association [1..1] to /DMO/I_Carrier        as _Carrier       on $projection.CarrierId = _Carrier.AirlineID
-  association [1..*] to /DMO/I_Connection     as _Connection    on $projection.ConnectionId = _Connection.ConnectionID
+  association        to parent z_i_travel_5364       as _Travel on $projection.travel_id = _Travel.travel_id
+  association [1..1] to /DMO/I_Customer       as _Customer      on $projection.customer_id = _Customer.CustomerID
+  association [1..1] to /DMO/I_Carrier        as _Carrier       on $projection.carrier_id = _Carrier.AirlineID
+  association [1..*] to /DMO/I_Connection     as _Connection    on $projection.connection_id = _Connection.ConnectionID
 
 {
-  key travel_id      as TravelId,
-  key booking_id     as BookingId,
-      booking_date   as BookingDate,
-      customer_id    as CustomerId,
-      carrier_id     as CarrierId,
-      connection_id  as ConnectionId,
-      flight_date    as FlightDate,
-      flight_price   as FlightPrice,
-      currency_code  as CurrencyCode,
-      booking_status as BookingStatus,
-      last_changed_at as LastChangedAt,
+  key travel_id,
+  key booking_id,
+      booking_date,
+      customer_id,
+      carrier_id,
+      connection_id,
+      flight_date,
+      flight_price,
+      currency_code,
+      booking_status,
+      last_changed_at,
       _Travel,
       _BookingSupplement,
       _Customer,

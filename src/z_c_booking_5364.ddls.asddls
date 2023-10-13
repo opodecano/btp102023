@@ -4,21 +4,21 @@
 define view entity z_c_booking_5364
   as projection on z_i_booking_5364
 {
-  key TravelId      as TravelID,
-  key BookingId     as BookingID,
-      BookingDate   as BookingDate,
-      CustomerId    as CustomerID,
+  key travel_id       as TravelID,
+  key booking_id      as BookingID,
+      booking_date    as BookingDate,
+      customer_id     as CustomerID,
       @ObjectModel.text.element: [ 'CarrierName' ]
-      CarrierId     as CarrierID,
-      _Carrier.Name as CarrierName,
-      ConnectionId  as ConnectionID,
-      FlightDate,
+      carrier_id      as CarrierID,
+      _Carrier.Name   as CarrierName,
+      connection_id   as ConnectionID,
+      flight_date     as FlightDate,
       @Semantics.amount.currencyCode: 'CurrencyCode'
-      FlightPrice,
+      flight_price    as FlightPrice,
       @Semantics.currencyCode: true
-      CurrencyCode,
-      BookingStatus,
-      LastChangedAt,
+      currency_code   as CurrencyCode,
+      booking_status  as BookingStatus,
+      last_changed_at as LastChangedAt,
       /* Associations */
       _Travel            : redirected to parent z_c_travel_5364,
       _BookingSupplement : redirected to composition child z_c_bookingsuppl_5364,

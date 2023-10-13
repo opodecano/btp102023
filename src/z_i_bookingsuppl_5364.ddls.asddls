@@ -4,21 +4,21 @@
 @EndUserText.label: 'Interface - Booking Supplement'
 define view z_i_bookingsuppl_5364
   as select from zbooksuppl_5364 as BookingSupplement
-  association        to parent z_i_booking_5364 as _Booking        on  $projection.TravelId  = _Booking.TravelId
-                                                                   and $projection.BookingId = _Booking.BookingId
-  association [1..1] to z_i_travel_5364         as _Travel         on  $projection.TravelId = _Travel.travel_id
-  association [1..1] to /DMO/I_Supplement       as _Product        on  $projection.SupplementId = _Product.SupplementID
-  association [1..*] to /DMO/I_SupplementText   as _SupplementText on  $projection.SupplementId = _SupplementText.SupplementID
+  association        to parent z_i_booking_5364 as _Booking        on  $projection.travel_id  = _Booking.travel_id
+                                                                   and $projection.booking_id = _Booking.booking_id
+  association [1..1] to z_i_travel_5364         as _Travel         on  $projection.travel_id = _Travel.travel_id
+  association [1..1] to /DMO/I_Supplement       as _Product        on  $projection.supplement_id = _Product.SupplementID
+  association [1..*] to /DMO/I_SupplementText   as _SupplementText on  $projection.supplement_id = _SupplementText.SupplementID
 
 {
-  key travel_id             as TravelId,
-  key booking_id            as BookingId,
-  key booking_supplement_id as BookingSupplementId,
-      supplement_id         as SupplementId,
-      @Semantics.amount.currencyCode: 'CurrencyCode'
-      price                 as Price,
+  key travel_id,
+  key booking_id,
+  key booking_supplement_id,
+      supplement_id,
+      @Semantics.amount.currencyCode: 'currency_code'
+      price ,
       @Semantics.currencyCode: true
-      currency_code         as CurrencyCode,
+      currency_code ,
       @Semantics.systemDateTime.lastChangedAt: true
       _Travel.last_changed_at,
       _Travel,
