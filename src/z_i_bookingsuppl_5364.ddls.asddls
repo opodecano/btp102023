@@ -1,8 +1,12 @@
-@AbapCatalog.sqlViewName: 'ZV_BOOK_5364'
-@AbapCatalog.compiler.compareFilter: true
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'Interface - Booking Supplement'
-define view z_i_bookingsuppl_5364
+@EndUserText.label: 'Interface Entity Booking Suplement'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+define view entity z_i_bookingsuppl_5364
   as select from zbooksuppl_5364 as BookingSupplement
   association        to parent z_i_booking_5364 as _Booking        on  $projection.travel_id  = _Booking.travel_id
                                                                    and $projection.booking_id = _Booking.booking_id
@@ -17,10 +21,11 @@ define view z_i_bookingsuppl_5364
       supplement_id,
       @Semantics.amount.currencyCode: 'currency_code'
       price ,
-      @Semantics.currencyCode: true
       currency_code ,
       @Semantics.systemDateTime.lastChangedAt: true
       _Travel.last_changed_at,
+      
+      /* Associations */
       _Travel,
       _Booking,
       _Product,

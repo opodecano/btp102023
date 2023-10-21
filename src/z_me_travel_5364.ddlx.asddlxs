@@ -73,8 +73,8 @@ annotate view z_c_travel_5364 with
   @UI.hidden: true
   LastChangedAt;
 
-  //  @UI: {
-  //  lineItem: [ { position: 60, importance: #HIGH } ]}
-  //  @EndUserText.label: 'Discount 10%'
-  //  discountPrice;
+//    @UI: {
+//    lineItem: [ { position: 60, importance: #HIGH } ]}
+//    @EndUserText.label: 'Discount 10%'
+//    discountprice;
 }

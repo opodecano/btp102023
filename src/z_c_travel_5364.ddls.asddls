@@ -2,6 +2,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.allowExtensions: true
 define root view entity z_c_travel_5364
+  provider contract transactional_query
   as projection on z_i_travel_5364
 {
   key travel_id          as TravelId,

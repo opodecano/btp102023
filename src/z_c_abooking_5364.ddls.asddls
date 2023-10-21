@@ -21,7 +21,6 @@ define view entity z_c_abooking_5364
       last_changed_at as LastChangedAt,
       /* Associations */
       _Travel : redirected to parent z_c_atravel_5364,
-      _BookingSupplement,
       _Customer,
       _Carrier
 }

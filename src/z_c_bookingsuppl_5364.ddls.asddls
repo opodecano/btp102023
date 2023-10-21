@@ -7,9 +7,10 @@ define view entity z_c_bookingsuppl_5364
   key travel_id                   as TravelID,
   key booking_id                  as BookingID,
   key booking_supplement_id       as BookingSupplementID,
-      supplement_id               as SupplemetID,
+      @ObjectModel.text.element: ['SupplementDescription']
+      supplement_id               as SupplementID,
       _SupplementText.Description as SupplementDescription : localized,
-      @Semantics.amount.currencyCode: 'CurrencyCode'
+      @Semantics.amount.currencyCode : 'CurrencyCode'
       price                       as Price,
       @Semantics.currencyCode: true
       currency_code               as CurrencyCode,

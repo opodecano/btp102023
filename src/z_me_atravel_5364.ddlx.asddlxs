@@ -64,13 +64,13 @@ annotate view z_c_atravel_5364 with
   {name: 'I_Currency', element: 'Currency' } } ]
   CurrencyCode;
   @UI: {
-  lineItem: [ { position: 40, importance: #HIGH }],
-  //  { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel' },
-  //  { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'Reject Travel' } ],
-  identification: [ { position: 40 }],
-  //  { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel' },
-  //  { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'Reject Travel' } ] ,
-  selectionField: [ { position: 40 } ] }
+       lineItem: [ { position: 15, importance: #HIGH },
+                   { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel' },
+                   { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'RejectTravel' } ],
+       identification: [ { position: 15 },
+                         { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'AcceptTravel' },
+                         { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'RejectTravel' } ] ,
+       selectionField: [ { position: 40 } ] }
   @EndUserText.label: 'Overall Status'
   TravelStatus;
   @UI: {
