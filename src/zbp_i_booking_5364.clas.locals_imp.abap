@@ -7,7 +7,7 @@ CLASS lhc_Booking DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS ValidateStatus FOR VALIDATE ON SAVE
       IMPORTING keys FOR Booking~ValidateStatus.
 
-    METHODS:    get_features          FOR FEATURES IMPORTING keys REQUEST requested_features FOR Booking RESULT result.
+*    METHODS:    get_features          FOR FEATURES IMPORTING keys REQUEST requested_features FOR Booking RESULT result.
 *    METHODS:    get_authorizations    FOR AUTHORIZATION IMPORTING keys REQUEST requested_authorizations FOR Booking RESULT result.
 
 ENDCLASS.
@@ -15,6 +15,15 @@ ENDCLASS.
 CLASS lhc_Booking IMPLEMENTATION.
 
   METHOD calculateTotalFlightPrice.
+
+  if not keys is initial.
+
+  zcl_aux_travel_det_5364=>calculate_price( it_travel_id =
+                                            value #( for groups <booking>  of booking_key  in keys
+                                            group by booking_key-travel_id WITHOUT MEMBERS ( <booking> ) ) ).
+
+  endif.
+
   ENDMETHOD.
 
   METHOD ValidateStatus.
@@ -45,20 +54,21 @@ CLASS lhc_Booking IMPLEMENTATION.
 
   ENDMETHOD.
 
-    METHOD get_features.
-
-    READ ENTITIES OF z_i_travel_5364 IN LOCAL MODE
-    ENTITY Booking
-    FIELDS ( booking_id  booking_date customer_id booking_status )
-    WITH VALUE #( FOR key_row IN keys ( %key = key_row-%key ) )
-    RESULT DATA(lt_booking_result).
-
-    result = VALUE #( FOR ls_booking IN lt_booking_result
-
-                      ( %key                      = ls_booking-%key
-                        %assoc-_BookingSupplement = if_abap_behv=>fc-o-enabled ) ).
-
-
-  ENDMETHOD.
+*    METHOD get_features.
+*
+*    READ ENTITIES OF z_i_travel_5364 IN LOCAL MODE
+*    ENTITY Booking
+*    FIELDS ( booking_id  booking_date customer_id booking_status )
+*    WITH VALUE #( FOR key_row IN keys ( %key = key_row-%key ) )
+*    RESULT DATA(lt_booking_result).
+*
+*    result = VALUE #( FOR ls_booking IN lt_booking_result
+*
+*                      ( %key                      = ls_booking-%key
+*                        %assoc-_BookingSupplement = if_abap_behv=>fc-o-enabled
+*                         ) ).
+*
+*
+*  ENDMETHOD.
 
 ENDCLASS.

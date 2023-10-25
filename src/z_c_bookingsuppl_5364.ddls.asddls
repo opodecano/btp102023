@@ -10,15 +10,17 @@ define view entity z_c_bookingsuppl_5364
       @ObjectModel.text.element: ['SupplementDescription']
       supplement_id               as SupplementID,
       _SupplementText.Description as SupplementDescription : localized,
-      @Semantics.amount.currencyCode : 'CurrencyCode'
+      @Semantics.amount.currencyCode : 'Currency'
       price                       as Price,
       @Semantics.currencyCode: true
-      currency_code               as CurrencyCode,
+      currency_code               as Currency,
       last_changed_at             as LastChangedAt,
       /* Associations */
-      _Travel  : redirected to z_c_travel_5364,
+     
       _Booking : redirected to parent z_c_booking_5364,
-      _Product,
-      _SupplementText
+      _Supplement,
+      _SupplementText,
+      _Travel  : redirected to z_c_travel_5364
+      
 
 }

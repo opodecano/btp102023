@@ -46,9 +46,7 @@ CLASS zcl_insert_data_5364 IMPLEMENTATION.
     AND booking_id EQ @lt_booking-booking_id
     INTO CORRESPONDING FIELDS OF TABLE
    @lt_book_sup.
-    DELETE FROM: ztravel_log_drj,
-    zbooking_log_drj,
-    zbooksuppl_drj.
+
     INSERT: ztravel_5364 FROM TABLE @lt_travel,
     zbooking_5364 FROM TABLE @lt_booking,
     zbooksuppl_5364 FROM TABLE @lt_book_sup.

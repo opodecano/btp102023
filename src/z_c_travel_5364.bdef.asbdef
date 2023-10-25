@@ -21,8 +21,10 @@ define behavior for z_c_booking_5364 alias BookingProcessor
   use update;
   use delete;
 
-  use association _Travel;
+
   use association _BookingSupplement { create; }
+
+  use association _Travel;
 }
 
 define behavior for z_c_bookingsuppl_5364 alias SupplementProcessor
@@ -31,7 +33,7 @@ define behavior for z_c_bookingsuppl_5364 alias SupplementProcessor
   use delete;
 
   use association _Travel;
-  use association _Booking;
+//  use association _Booking;
 
 
 }

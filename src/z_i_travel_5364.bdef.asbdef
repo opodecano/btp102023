@@ -59,7 +59,7 @@ etag master last_changed_at
     determination calculateTotalFlightPrice on modify { field flight_price, currency_code; }
 
     association _Travel { }
-    association _BookingSupplement { create ( features : instance ); }
+    association _BookingSupplement { create ; } //( features : instance )
 
     mapping
          for zbooking_5364 corresponding;
@@ -73,19 +73,15 @@ etag master last_changed_at
     etag master last_changed_at
     {
       field ( readonly ) travel_id, booking_id;
-      field ( mandatory : create )  supplement_id, price;
+      field ( mandatory : create ) supplement_id, price;
       update;
       delete;
 
       //Determinations
       determination calculateTotalSupplPrice on modify { field price, currency_code; }
 
-      association _Travel;
-      association _Booking;
-
-
-
-
 //      mapping
 //           for zbooksuppl_5364 corresponding;
+          association _Travel;
+          //      association _Booking;
         }
