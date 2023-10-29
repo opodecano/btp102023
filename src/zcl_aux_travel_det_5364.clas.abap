@@ -77,7 +77,7 @@ CLASS zcl_aux_travel_det_5364 IMPLEMENTATION.
     ENDLOOP.
 
     READ ENTITIES OF z_i_travel_5364
-   ENTITY Booking BY \_BookingSupplement
+   ENTITY Booking BY \_BookSupplement
    FROM VALUE #( FOR ls_travel IN lt_read_booking (
                                travel_id               = ls_travel-travel_id
                                booking_id              = ls_travel-booking_id

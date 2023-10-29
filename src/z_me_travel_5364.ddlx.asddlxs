@@ -11,24 +11,32 @@
 }
 annotate view z_c_travel_5364 with
 {
-  @UI.facet: [{ id: 'Travel', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Travel' , position: 10},{ id: 'Booking', purpose: #STANDARD, type: #LINEITEM_REFERENCE, label: 'Booking' , position: 20, targetElement: '_Booking' }]
-  @UI: {
-    lineItem: [{
-      position: 10,
-      importance: #HIGH }],
+  @UI.facet: [ { id:              'Travel',
+                 purpose:         #STANDARD,
+                 type:            #IDENTIFICATION_REFERENCE,
+                 label:           'Travel',
+                 position:        10 },
+               { id:              'Booking',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'Booking',
+                 position:        20,
+                 targetElement:   '_Booking'}]
 
-    identification: [{
-      position: 10,
-      label: 'Travel ID [1,...,9999999]'}]}
+
+  @UI: {
+      lineItem:       [ { position: 10, importance: #HIGH } ,
+                      { type: #FOR_ACTION, dataAction: 'copyTravel', label: 'Copy Travel' } ],
+      identification: [ { position: 10, label: 'Travel ID' } ] }
   @Search.defaultSearchElement: true
-  TravelId;
+  TravelID;
 
   @UI: {
     lineItem: [{ position: 20, importance: #HIGH }],
     identification: [{ position: 20}],
     selectionField: [{ position: 20 }]}
   @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Agency', element: 'AgencyID' } }]
-  AgencyId;
+  AgencyID;
 
   @UI: {
     lineItem: [{ position: 30, importance: #HIGH }],
@@ -36,20 +44,20 @@ annotate view z_c_travel_5364 with
     selectionField: [{ position: 30 }]}
   @Consumption.valueHelpDefinition: [{ entity: {name: '/DMO/I_Customer', element: 'CustomerID' } }]
   @Search.defaultSearchElement: true
-  CustomerId;
+  CustomerID;
 
   @UI: {
-    lineItem: [{ position: 40, importance: #MEDIUM }],
-    identification: [{ position: 40}]}
+    lineItem: [ { position: 40, importance: #MEDIUM } ],
+    identification: [ { position: 40 } ] }
   BeginDate;
 
   @UI: {
-    lineItem: [{ position: 41, importance: #MEDIUM }],
-    identification: [{ position: 41}]}
+    lineItem: [{ position: 41, importance: #MEDIUM } ],
+    identification: [ { position: 41 } ] }
   EndDate;
 
   @UI: {
-    identification: [{ position: 42}]}
+    identification: [ { position: 42 } ] }
   BookingFee;
 
   @UI: {
@@ -61,20 +69,24 @@ annotate view z_c_travel_5364 with
   CurrencyCode;
 
   @UI: {
-    identification: [{ position: 46}]}
-  Description;
-
-  @UI: {
   lineItem: [ { position: 50, importance: #HIGH },
   { type: #FOR_ACTION, dataAction: 'createTravelByTemplate', label: 'Create Travel by Template' } ],
   identification: [ { position: 45, label: 'Status [O(Open)|A(Accepted)|X(Canceled)]' } ] }
-  TravelStatus;
+  @Consumption.valueHelpDefinition: [{ entity: { name: '/DMO/I_Overall_Status_VH', element: 'OverallStatus' }}]
+  OverallStatus;
+
+  @UI.hidden: true
+  OverallStatusText;
+
+  @UI: {
+      identification:[ { position: 46 } ]  }
+  Description;
 
   @UI.hidden: true
   LastChangedAt;
+  @UI: {
+  lineItem: [ { position: 60, importance: #HIGH } ] }
+  @EndUserText.label: 'Discount 10%'
+  DiscountPrice;
 
-//    @UI: {
-//    lineItem: [ { position: 60, importance: #HIGH } ]}
-//    @EndUserText.label: 'Discount 10%'
-//    discountprice;
 }

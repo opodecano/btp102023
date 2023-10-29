@@ -4,28 +4,28 @@
   <asx:values>
    <SRVB>
     <METADATA>
-     <NAME>ZSB_TRAVEL_5364</NAME>
+     <NAME>ZUI_TRAVEL_PROC_M</NAME>
      <TYPE>SRVB/SVB</TYPE>
-     <DESCRIPTION>Travel</DESCRIPTION>
+     <DESCRIPTION>UI service for travels</DESCRIPTION>
      <RESPONSIBLE>GMINO</RESPONSIBLE>
      <MASTER_LANGUAGE>EN</MASTER_LANGUAGE>
     </METADATA>
     <CONTENT>
      <BIND_TYPE_IMPL>
-      <NAME>ZSB_TRAVEL_5364</NAME>
+      <NAME>ZUI_TRAVEL_PROC_M</NAME>
      </BIND_TYPE_IMPL>
      <BIND_TYPE>ODATA</BIND_TYPE>
      <BIND_TYPE_VERSION>V2</BIND_TYPE_VERSION>
      <SERVICES>
       <item>
-       <SERVICE_NAME>ZSB_TRAVEL_5364</SERVICE_NAME>
+       <SERVICE_NAME>ZUI_TRAVEL_PROC_M</SERVICE_NAME>
        <SERVICE_CONTENT>
         <item>
          <SERVICE_VERSION>0001</SERVICE_VERSION>
          <SRVD_REF>
-          <URI>/sap/bc/adt/ddic/srvd/sources/zsd_travel_5364</URI>
+          <URI>/sap/bc/adt/ddic/srvd/sources/%2fdmo%2fui_travel_processor_m</URI>
           <TYPE>SRVD/SRV</TYPE>
-          <NAME>ZSD_TRAVEL_5364</NAME>
+          <NAME>/DMO/UI_TRAVEL_PROCESSOR_M</NAME>
          </SRVD_REF>
         </item>
        </SERVICE_CONTENT>

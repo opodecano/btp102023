@@ -1,15 +1,18 @@
 @EndUserText.label: 'Travel'
 define service zsd_travel_5364 {
-  expose z_c_travel_5364       as Travel;
-  expose z_c_booking_5364      as Booking;
+  expose z_c_travel_5364 as Travel;
+  expose z_c_booking_5364 as Booking;
   expose z_c_bookingsuppl_5364 as BookingSupplement;
-  expose /DMO/I_Supplement     as Supplement;
+  expose /DMO/I_Supplement as Supplement;
   expose /DMO/I_SupplementText as SupplementText;
-  expose /DMO/I_Customer       as Passenger;
-  expose /DMO/I_Agency         as Agency;
-  expose /DMO/I_Carrier        as Airline;
-  expose /DMO/I_Connection     as Connection;
-  expose /DMO/I_Flight         as Flights;
-  expose I_Currency            as Currency;
-  expose I_Country             as Country;
+  expose /DMO/I_Customer as Passenger;
+  expose /DMO/I_Agency as Agency;
+  expose /DMO/I_Carrier as Airline;
+  expose /DMO/I_Connection as Connection;
+  expose /DMO/I_Flight as Flights;
+  expose /DMO/I_Airport as Airport;
+  expose I_Currency as Currency;
+  expose I_Country as Country;
+  expose /DMO/I_Overall_Status_VH as OverallStatusVH;
+  expose /DMO/I_Booking_Status_VH as BookingStatusVH;
 }

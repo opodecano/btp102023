@@ -22,7 +22,7 @@ define behavior for z_c_booking_5364 alias BookingProcessor
   use delete;
 
 
-  use association _BookingSupplement { create; }
+  use association _BookSupplement { create; }
 
   use association _Travel;
 }

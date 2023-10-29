@@ -12,7 +12,7 @@
 annotate view z_c_booking_5364 with
 {
   @UI.facet: [{ id: 'Booking', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Booking' , position: 10},
-              { id: 'BookingSupplement', purpose: #STANDARD, type: #LINEITEM_REFERENCE, label: 'Booking Supplement' , position: 20, targetElement: '_BookingSupplement' }]
+              { id: 'BookingSupplement', purpose: #STANDARD, type: #LINEITEM_REFERENCE, label: 'Booking Supplement' , position: 20, targetElement: '_BookSupplement' }]
   @Search.defaultSearchElement: true
   TravelID;
   @UI: { lineItem: [ { position: 20, importance: #HIGH } ],
@@ -53,7 +53,9 @@ annotate view z_c_booking_5364 with
   @Consumption.valueHelpDefinition: [{entity: {name: 'I_Currency', element: 'Currency' }}]
   CurrencyCode;
   @UI: { lineItem: [ { position: 90, importance: #HIGH, label: 'Status' } ],
-  identification: [ { position: 90, label: 'Status [N(New)| X(Canceled)| B(Booked)]' } ] }
+  identification: [ { position: 90, label: 'Status [N(New)| X(Canceled)| B(Booked)]' } ] ,
+             textArrangement: #TEXT_ONLY }
+  @Consumption.valueHelpDefinition: [{ entity: { name: '/DMO/I_Booking_Status_VH', element: 'BookingStatus' }}]
   BookingStatus;
   @UI.hidden: true
   LastChangedAt;

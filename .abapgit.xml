@@ -14,6 +14,59 @@
     <item>/.gitlab-ci.yml</item>
     <item>/abaplint.json</item>
     <item>/azure-pipelines.yml</item>
+    <item>/src/1d1a3422c0946ea358969415771c8eht.sush.xml</item>
+    <item>/src/3a18930b2deef76a2c4594c795a8acht.sush.xml</item>
+    <item>/src/5f258948740984adfa09c47dafc21dht.sush.xml</item>
+    <item>/src/6344e25594e2a12cb1c1d6a6060a35ht.sush.xml</item>
+    <item>/src/ce1cc3d0235dce5d486c1ace2394d7ht.sush.xml</item>
+    <item>/src/z_b_brands_5364.ddls.asddls</item>
+    <item>/src/z_b_brands_5364.ddls.baseinfo</item>
+    <item>/src/z_b_brands_5364.ddls.xml</item>
+    <item>/src/z_b_cars5364.ddls.asddls</item>
+    <item>/src/z_b_cars5364.ddls.baseinfo</item>
+    <item>/src/z_b_cars5364.ddls.xml</item>
+    <item>/src/z_b_det_customer_5364.ddls.asddls</item>
+    <item>/src/z_b_det_customer_5364.ddls.baseinfo</item>
+    <item>/src/z_b_det_customer_5364.ddls.xml</item>
+    <item>/src/z_b_rem_days_5364.ddls.asddls</item>
+    <item>/src/z_b_rem_days_5364.ddls.baseinfo</item>
+    <item>/src/z_b_rem_days_5364.ddls.xml</item>
+    <item>/src/z_i_renting_5364.ddls.asddls</item>
+    <item>/src/z_i_renting_5364.ddls.baseinfo</item>
+    <item>/src/z_i_renting_5364.ddls.xml</item>
+    <item>/src/z_mc_travel_5364.msag.xml</item>
+    <item>/src/zcl_data_file_upload_5364.clas.abap</item>
+    <item>/src/zcl_data_file_upload_5364.clas.xml</item>
+    <item>/src/zcl_renting_load_data_5364.clas.abap</item>
+    <item>/src/zcl_renting_load_data_5364.clas.xml</item>
+    <item>/src/zde_cntr_type_5364.dtel.xml</item>
+    <item>/src/zde_consum.dtel.xml</item>
+    <item>/src/zde_doc_id_l.dtel.xml</item>
+    <item>/src/zde_moneda_5364.dtel.xml</item>
+    <item>/src/zde_precio_5364.dtel.xml</item>
+    <item>/src/zdo_cntr_type_5364.doma.xml</item>
+    <item>/src/zhttp_data_load_5364.http.xml</item>
+    <item>/src/zhttp_data_load_5364_http.sco2.xml</item>
+    <item>/src/zhttp_data_load_5364_http_ibs.sia6.xml</item>
+    <item>/src/zme_det_customer_5364.ddlx.asddlxs</item>
+    <item>/src/zme_det_customer_5364.ddlx.xml</item>
+    <item>/src/zme_renting_5364.ddlx.asddlxs</item>
+    <item>/src/zme_renting_5364.ddlx.xml</item>
+    <item>/src/zrent_brands_364.tabl.xml</item>
+    <item>/src/zrent_cars_5364.tabl.xml</item>
+    <item>/src/zrent_cust_5364.tabl.xml</item>
+    <item>/src/zsb_atravel_5364_iwsg.sco2.xml</item>
+    <item>/src/zsb_atravel_5364_iwsg_ibs.sia6.xml</item>
+    <item>/src/zsb_renting_5364.srvb.xml</item>
+    <item>/src/zsb_renting_5364_iwsg.sco2.xml</item>
+    <item>/src/zsb_renting_5364_iwsg_ibs.sia6.xml</item>
+    <item>/src/zsb_renting_api_5364.srvb.xml</item>
+    <item>/src/zsb_renting_api_5364_iwsg.sco2.xml</item>
+    <item>/src/zsb_renting_api_5364_iwsg_ibs.sia6.xml</item>
+    <item>/src/zsb_travel_5364_iwsg.sco2.xml</item>
+    <item>/src/zsb_travel_5364_iwsg_ibs.sia6.xml</item>
+    <item>/src/zsd_renting_5364.srvd.srvdsrv</item>
+    <item>/src/zsd_renting_5364.srvd.xml</item>
    </IGNORE>
   </DATA>
  </asx:values>
