@@ -3,14 +3,18 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD04V>
-    <ROLLNAME>ZDE_FLAG</ROLLNAME>
+    <ROLLNAME>ZDE_TEXT60_5364</ROLLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
-    <DOMNAME>CHAR1</DOMNAME>
+    <DOMNAME>ZD_TEXT60_5364</DOMNAME>
     <HEADLEN>55</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>20</SCRLEN2>
     <SCRLEN3>40</SCRLEN3>
-    <DDTEXT>Flag</DDTEXT>
+    <DDTEXT>Descripción</DDTEXT>
+    <REPTEXT>Descripción</REPTEXT>
+    <SCRTEXT_S>Descrip.</SCRTEXT_S>
+    <SCRTEXT_M>Descripción</SCRTEXT_M>
+    <SCRTEXT_L>Descripción</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
     <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
