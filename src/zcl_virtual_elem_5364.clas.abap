@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_virtual_elem_5364 IMPLEMENTATION.
+CLASS ZCL_VIRTUAL_ELEM_5364 IMPLEMENTATION.
+
+
   METHOD if_sadl_exit_calc_element_read~calculate.
 
     DATA lt_original_data TYPE STANDARD TABLE OF z_c_travel_5364 WITH DEFAULT KEY.
@@ -25,6 +27,7 @@ CLASS zcl_virtual_elem_5364 IMPLEMENTATION.
     ct_calculated_data = CORRESPONDING #( lt_original_data ).
 
   ENDMETHOD.
+
 
   METHOD if_sadl_exit_calc_element_read~get_calculation_info.
 
@@ -41,5 +44,4 @@ CLASS zcl_virtual_elem_5364 IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
-
 ENDCLASS.

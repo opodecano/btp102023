@@ -19,7 +19,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_aux_travel_det_5364 IMPLEMENTATION.
+CLASS ZCL_AUX_TRAVEL_DET_5364 IMPLEMENTATION.
+
+
   METHOD calculate_price.
 
     DATA: lv_total_booking_price TYPE /dmo/total_price,
@@ -131,5 +133,4 @@ CLASS zcl_aux_travel_det_5364 IMPLEMENTATION.
 
 
   ENDMETHOD.
-
 ENDCLASS.

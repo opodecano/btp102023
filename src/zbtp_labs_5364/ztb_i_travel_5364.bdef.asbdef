@@ -1,0 +1,76 @@
+managed;
+//strict ( 2 );
+
+define behavior for ztb_i_travel_5364 alias Travel
+implementation in class zbp_tbi_travel_5364 unique
+persistent table ztb_travel_5364
+lock master
+authorization master ( instance )
+etag master last_changed_at
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) last_changed_at, last_changed_by, created_by, created_at;
+  field ( mandatory ) agency_id, overall_status, booking_fee, currency_code;
+  // dynamic field control
+  field ( features : instance ) travel_id;
+  // validations
+  validation ValidateCustomer on save { create; field customer_id; }
+  validation ValidateDates on save { create; field begin_date, end_date; }
+  validation ValidateStatus on save { create; field overall_status; }
+
+  // actions
+  action ( features : instance ) acceptTravel result [1] $self;
+  action ( features : instance ) rejectTravel result [1] $self;
+
+  action createTravelByTemplate result [1] $self;
+
+  association _Booking { create; }
+
+  mapping for ztb_travel_5364 corresponding;
+}
+
+define behavior for ztb_i_booking_5364 alias Booking
+implementation in class zbp_tbi_booking_5364 unique
+persistent table ztb_booking_5364
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master last_changed_at
+{
+  update;
+  delete;
+  field ( readonly ) travel_id;
+  field ( mandatory ) carrier_id, connection_id, flight_date, booking_status;
+  //validations
+  validation ValidateStatus on save { create; field booking_status; }
+
+  association _Travel;
+  association _BookSupplement { create; }
+
+    //Determinations
+  determination calculateTotalFlightPrice on modify { field flight_price; }
+  determination calculateTotalSupplimPrice on modify { field currency_code; }
+
+  mapping for ztb_booking_5364 corresponding;
+}
+
+define behavior for ztb_i_booksup_5364 alias Supplement
+implementation in class zbp_tbi_bookingsupp_5364 unique
+with unmanaged save
+lock dependent by _Travel
+authorization dependent by _Travel
+etag master last_changed_at
+{
+  update;
+  delete;
+  field ( readonly ) travel_id, booking_id;
+  field ( mandatory ) supplement_id, price;
+  association _Travel;
+  association _Booking;
+
+    //Determinations
+  determination calculateTotalSupplimPrice on modify { field price, currency_code; }
+
+  mapping for ztb_booksup_5364 corresponding;
+}

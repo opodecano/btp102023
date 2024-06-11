@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_ext_update_ent_5364 IMPLEMENTATION.
+CLASS ZCL_EXT_UPDATE_ENT_5364 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     MODIFY ENTITIES OF z_i_travel_5364
@@ -40,5 +42,4 @@ CLASS zcl_ext_update_ent_5364 IMPLEMENTATION.
     ENDIF.
 
   ENDMETHOD.
-
 ENDCLASS.

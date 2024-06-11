@@ -7,7 +7,12 @@ CLASS zcl_insert_data_5364 DEFINITION
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.
-CLASS zcl_insert_data_5364 IMPLEMENTATION.
+
+
+
+CLASS ZCL_INSERT_DATA_5364 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
     DATA: lt_travel   TYPE TABLE OF ztravel_5364,
           lt_booking  TYPE TABLE OF zbooking_5364,
