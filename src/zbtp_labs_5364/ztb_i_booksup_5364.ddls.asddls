@@ -7,11 +7,11 @@
     sizeCategory: #S,
     dataClass: #MIXED
 }
-define view entity ZTB_I_BOOKSUP_5364
+define view entity ztb_i_booksup_5364
   as select from ztb_booksup_5364
-  association        to parent ZTB_I_BOOKING_5364 as _Booking        on  $projection.travel_id  = _Booking.travel_id
+  association        to parent ztb_i_booking_5364 as _Booking        on  $projection.travel_id  = _Booking.travel_id
                                                                      and $projection.booking_id = _Booking.booking_id
-  association [1..1] to ZTB_I_TRAVEL_5364         as _Travel         on  $projection.travel_id = _Travel.travel_id
+  association [1..1] to ztb_i_travel_5364         as _Travel         on  $projection.travel_id = _Travel.travel_id
   association [1..1] to /DMO/I_Supplement         as _Supplement     on  $projection.supplement_id = _Supplement.SupplementID
   association [1..*] to /DMO/I_SupplementText     as _SupplementText on  $projection.supplement_id = _SupplementText.SupplementID
 {

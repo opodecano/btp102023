@@ -9,7 +9,7 @@
             value: 'TravelId'
         }}
 }
-annotate entity ZTB_C_ATRAVEL_5364
+annotate entity ztb_c_atravel_5364
     with 
 {
   @UI.facet: [{ id: 'Travel',
@@ -64,16 +64,16 @@ annotate entity ZTB_C_ATRAVEL_5364
   @Consumption.valueHelpDefinition: [ {entity:
   {name: 'I_Currency', element: 'Currency' } } ]
   CurrencyCode;
-//  @UI: {
-//       lineItem: [ { position: 15, importance: #HIGH },
-//                   { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel' },
-//                   { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'RejectTravel' } ],
-//       identification: [ { position: 15 },
-//                         { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'AcceptTravel' },
-//                         { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'RejectTravel' } ] ,
-//       selectionField: [ { position: 40 } ] }
-//  @EndUserText.label: 'Overall Status'
-//  TravelStatus;
+  @UI: {
+       lineItem: [ { position: 15, importance: #HIGH },
+                   { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel' },
+                   { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'RejectTravel' } ],
+       identification: [ { position: 15 },
+                         { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'AcceptTravel' },
+                         { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'RejectTravel' } ] ,
+       selectionField: [ { position: 40 } ] }
+  @EndUserText.label: 'Overall Status'
+  TravelStatus;
   @UI: {
   lineItem: [ { position: 45, importance: #MEDIUM } ],
   identification:[ { position: 45 } ] }

@@ -2,9 +2,9 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.ignorePropagatedAnnotations: true
 @Metadata.allowExtensions: true
-define root view entity ZTB_C_ATRAVEL_5364
+define root view entity ztb_c_atravel_5364
   provider contract transactional_query
-  as projection on ZTB_I_TRAVEL_5364
+  as projection on ztb_i_travel_5364
 {
   key travel_id          as TravelId,
       @ObjectModel.text.element: [ 'AgencyName' ]
@@ -26,6 +26,6 @@ define root view entity ZTB_C_ATRAVEL_5364
       last_changed_at    as LastChangedAt,
       /* Associations */
       _Agency,
-      _Booking : redirected to composition child ZTB_C_ABOOKING_5364, 
+      _Booking : redirected to composition child ztb_c_abooking_5364, 
       _Customer
 }

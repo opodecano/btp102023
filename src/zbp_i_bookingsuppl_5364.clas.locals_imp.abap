@@ -48,7 +48,7 @@ CLASS lsc_supplement IMPLEMENTATION.
     ENDIF.
 
     IF NOT update-supplement IS INITIAL.
-      lt_supplements = CORRESPONDING #( update-supplement ).
+      lt_supplements = CORRESPONDING #( update-supplement  ).
       lv_op_type = lsc_supplement=>update.
     ENDIF.
 

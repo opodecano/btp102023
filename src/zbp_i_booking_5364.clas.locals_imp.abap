@@ -45,7 +45,7 @@ CLASS lhc_Booking IMPLEMENTATION.
           APPEND VALUE #( %key                  = ls_booking_result-%key
                           %msg                  = new_message(
                                                     id       = 'Z_MC_TRAVEL_5364'
-                                                    number   = '004'
+                                                    number   = '008'
                                                     severity = if_abap_behv_message=>severity-error
                                                     v1       = ls_booking_result-booking_id )
                           %element-booking_status  = if_abap_behv=>mk-on ) TO reported-booking.

@@ -33,7 +33,7 @@ define behavior for z_c_bookingsuppl_5364 alias SupplementProcessor
   use delete;
 
   use association _Travel;
-//  use association _Booking;
+  use association _Booking;
 
 
 }

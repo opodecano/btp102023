@@ -7,7 +7,7 @@ persistent table ztravel_5364
 with additional save
 etag master last_changed_at
 lock master
-early numbering
+//early numbering
 authorization master ( instance )
 
 {
@@ -25,7 +25,7 @@ authorization master ( instance )
 
   // validations
   validation ValidateCustomer on save { create; field customer_id; }
-  validation validateAgency on save { create; field agency_id; }
+  validation ValidateAgency on save { create; field agency_id; }
   validation ValidateDates on save { create; field begin_date, end_date; }
   validation ValidateStatus on save { create; field overall_status; }
 
@@ -47,12 +47,14 @@ implementation in class zbp_i_booking_5364 unique
 persistent table zbooking_5364
 lock dependent by _Travel
 authorization dependent by _Travel
-early numbering
+//early numbering
 etag master last_changed_at
 {
   field ( readonly ) travel_id;
   field ( readonly : update ) booking_id;
   field ( mandatory : create ) booking_id, carrier_id, connection_id, flight_date, booking_status;
+
+
   update;
   delete;
 
@@ -78,7 +80,9 @@ authorization dependent by _Travel
 etag master last_changed_at
 {
   field ( readonly ) travel_id, booking_id;
-  field ( mandatory : create ) supplement_id, price;
+  field ( readonly : update ) booking_supplement_id;
+
+  field ( mandatory : create ) booking_supplement_id, supplement_id, price;
   update;
   delete;
 

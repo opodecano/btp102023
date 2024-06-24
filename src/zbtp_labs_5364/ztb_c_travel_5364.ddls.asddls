@@ -1,9 +1,9 @@
 @EndUserText.label: 'Consumption - Travel'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.allowExtensions: true
-define root view entity ZTB_C_TRAVEL_5364
+define root view entity ztb_c_travel_5364
   provider contract transactional_query
-   as projection on ZTB_I_TRAVEL_5364
+   as projection on ztb_i_travel_5364
 {
   key     travel_id                 as TravelID,
           @ObjectModel.text.element: [ 'AgencyName' ]
@@ -26,12 +26,12 @@ define root view entity ZTB_C_TRAVEL_5364
           description               as Description,
           last_changed_at           as LastChangedAt,
           @Semantics.amount.currencyCode: 'CurrencyCode'
-          @ObjectModel.virtualElementCalculatedBy: 'ABAP:ZCL_VIRTUAL_ELEM_5364'
+          @ObjectModel.virtualElementCalculatedBy: 'ABAP:ZCL_TB_VIRTUAL_ELEM_5364'
   virtual DiscountPrice : /dmo/total_price,
 
           /* Associations */
 
-          _Booking : redirected to composition child ZTB_C_BOOKING_5364,
+          _Booking : redirected to composition child ztb_c_booking_5364,
           _Agency,
           _Customer,
           _OverallStatus

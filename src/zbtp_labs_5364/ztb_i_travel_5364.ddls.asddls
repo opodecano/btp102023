@@ -1,9 +1,9 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Interfase  - Travel'
 @Metadata.ignorePropagatedAnnotations: true
-define root view entity ZTB_I_TRAVEL_5364
+define root view entity ztb_i_travel_5364
   as select from ztb_travel_5364
-  composition [0..*] of ZTB_I_BOOKING_5364       as _Booking
+  composition [0..*] of ztb_i_booking_5364       as _Booking
   association [0..1] to /DMO/I_Agency            as _Agency        on $projection.agency_id = _Agency.AgencyID
   association [0..1] to /DMO/I_Customer          as _Customer      on $projection.customer_id = _Customer.CustomerID
   association [0..1] to I_Currency               as _Currency      on $projection.currency_code = _Currency.Currency

@@ -1,5 +1,5 @@
 @EndUserText.label: 'Service Definition Travel'
-define service Zsd_tb_travel_5364 {
+define service zsd_tb_travel_5364 {
   expose ZTB_C_TRAVEL_5364        as Travel;
   expose ZTB_C_BOOKING_5364       as Booking;
   expose ZTB_C_BOOKSUP_5364       as BookingSupplement;

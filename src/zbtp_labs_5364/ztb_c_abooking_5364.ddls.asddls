@@ -2,8 +2,8 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.ignorePropagatedAnnotations: true
 @Metadata.allowExtensions: true
-define view entity ZTB_C_ABOOKING_5364
-   as projection on ZTB_I_BOOKING_5364
+define view entity ztb_c_abooking_5364
+   as projection on ztb_i_booking_5364
 {
   key travel_id       as TravelID,
   key booking_id      as BookingID,
@@ -21,7 +21,7 @@ define view entity ZTB_C_ABOOKING_5364
       booking_status  as BookingStatus,
       last_changed_at as LastChangedAt,
       /* Associations */
-      _Travel : redirected to parent ZTB_C_ATRAVEL_5364,
+      _Travel : redirected to parent ztb_c_atravel_5364,
       _Customer,
       _Carrier
 }

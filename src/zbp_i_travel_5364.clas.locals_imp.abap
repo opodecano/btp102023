@@ -14,11 +14,11 @@ CLASS lhc_Travel DEFINITION INHERITING FROM cl_abap_behavior_handler.
       ValidateCustomer               FOR VALIDATE ON SAVE IMPORTING keys FOR Travel~ValidateCustomer,
       ValidateDates                  FOR VALIDATE ON SAVE IMPORTING keys FOR Travel~ValidateDates,
       ValidateStatus                 FOR VALIDATE ON SAVE IMPORTING keys FOR Travel~ValidateStatus,
-      validate_agency                FOR VALIDATE ON SAVE IMPORTING keys FOR travel~validateagency.
+      ValidateAgency                FOR VALIDATE ON SAVE IMPORTING keys FOR travel~validateagency.
 
-    METHODS:
-      earlynumbering_cba_booking FOR NUMBERING IMPORTING entities FOR CREATE Travel\_Booking,
-      earlynumbering_create FOR NUMBERING IMPORTING entities FOR CREATE Travel.
+*    METHODS:
+*      earlynumbering_cba_booking FOR NUMBERING IMPORTING entities FOR CREATE Travel\_Booking,
+*      earlynumbering_create FOR NUMBERING IMPORTING entities FOR CREATE Travel.
 
 ENDCLASS.
 
@@ -53,7 +53,7 @@ CLASS lhc_Travel IMPLEMENTATION.
                                                   id       = 'Z_MC_TRAVEL_5364'
                                                   number   = '001'
                                                   severity = if_abap_behv_message=>severity-error
-                                                  v1       = <fs_travel>-travel_id )
+                                                  v1       = <fs_travel>-customer_id )
                         %element-customer_id  = if_abap_behv=>mk-on ) TO reported-travel.
       ENDIF.
     ENDLOOP.
@@ -84,7 +84,7 @@ CLASS lhc_Travel IMPLEMENTATION.
                         %element-end_date  = if_abap_behv=>mk-on
                         %element-begin_date  = if_abap_behv=>mk-on ) TO reported-travel.
 
-      ELSEIF ls_travel_result-begin_date LE cl_abap_context_info=>get_system_date( ). "begin date must be in the
+      ELSEIF ls_travel_result-begin_date LT cl_abap_context_info=>get_system_date( ). "begin date must be in the
         APPEND VALUE #( %key                  = ls_travel_result-%key
                         travel_id             = ls_travel_result-travel_id ) TO failed-travel.
 
@@ -143,7 +143,7 @@ CLASS lhc_Travel IMPLEMENTATION.
                       ( %key                  = ls_travel-%key
                         %field-travel_id      = if_abap_behv=>fc-f-read_only
                         %field-overall_status = if_abap_behv=>fc-f-read_only
-                        %assoc-_Booking       = if_abap_behv=>fc-o-enabled
+                        %assoc-_Booking       = if_abap_behv=>fc-o-enabled   "habilitar la associacion
                         %action-acceptTravel  = COND #( WHEN ls_travel-overall_status = 'A'
                                                        THEN if_abap_behv=>fc-o-disabled
                                                        ELSE if_abap_behv=>fc-o-enabled )
@@ -191,19 +191,20 @@ CLASS lhc_Travel IMPLEMENTATION.
 
     READ ENTITIES OF z_i_travel_5364 IN LOCAL MODE
     ENTITY Travel
-    FIELDS ( agency_id
-             customer_id
-             begin_date
-             end_date
-             booking_fee
-             total_price
-             currency_code
-             overall_status
-             description
-             created_by
-             created_at
-             last_changed_by
-             last_changed_at )
+*    FIELDS ( agency_id
+*             customer_id
+*             begin_date
+*             end_date
+*             booking_fee
+*             total_price
+*             currency_code
+*             overall_status
+*             description
+*             created_by
+*             created_at
+*             last_changed_by
+*             last_changed_at )
+    ALL FIELDS
     WITH VALUE #( FOR key_row1 IN keys ( travel_id = key_row1-travel_id ) )
     RESULT DATA(lt_travel)
     FAILED failed
@@ -351,7 +352,7 @@ CLASS lhc_Travel IMPLEMENTATION.
     ENDLOOP.
   ENDMETHOD.
 
-  METHOD validate_agency.
+  METHOD ValidateAgency.
     " Read relevant travel instance data
     READ ENTITIES OF z_i_travel_5364 IN LOCAL MODE
     ENTITY Travel
@@ -391,142 +392,142 @@ CLASS lhc_Travel IMPLEMENTATION.
 
   ENDMETHOD.
 
-  METHOD earlynumbering_cba_booking.
-    DATA: max_booking_id TYPE /dmo/booking_id.
+*  METHOD earlynumbering_cba_booking.
+*    DATA: max_booking_id TYPE /dmo/booking_id.
+*
+*    READ ENTITIES OF z_i_travel_5364 IN LOCAL MODE
+*      ENTITY Travel BY \_Booking
+*        FROM CORRESPONDING #( entities )
+*        LINK DATA(bookings)
+*      FAILED failed.
+*
+*    " Loop over all unique TravelIDs
+*    LOOP AT entities ASSIGNING FIELD-SYMBOL(<travel_group>) GROUP BY <travel_group>-travel_id.
+*
+*      " Get highest booking_id from bookings belonging to travel
+*      max_booking_id = REDUCE #( INIT max = CONV /dmo/booking_id( '0' )
+*                                 FOR  booking IN bookings USING KEY entity WHERE ( source-travel_id  = <travel_group>-travel_id )
+*                                 NEXT max = COND /dmo/booking_id( WHEN booking-target-booking_id > max
+*                                                                    THEN booking-target-booking_id
+*                                                                    ELSE max )
+*                               ).
+*      " Get highest assigned booking_id from incoming entities
+*      max_booking_id = REDUCE #( INIT max = max_booking_id
+*                                 FOR  entity IN entities USING KEY entity WHERE ( travel_id  = <travel_group>-travel_id )
+*                                 FOR  target IN entity-%target
+*                                 NEXT max = COND /dmo/booking_id( WHEN   target-booking_id > max
+*                                                                    THEN target-booking_id
+*                                                                    ELSE max )
+*                               ).
+*
+*      " Loop over all entries in entities with the same TravelID
+*      LOOP AT entities ASSIGNING FIELD-SYMBOL(<travel>) USING KEY entity WHERE travel_id = <travel_group>-travel_id.
+*
+*        " Assign new booking-ids if not already assigned
+*        LOOP AT <travel>-%target ASSIGNING FIELD-SYMBOL(<booking_wo_numbers>).
+*          APPEND CORRESPONDING #( <booking_wo_numbers> ) TO mapped-booking ASSIGNING FIELD-SYMBOL(<mapped_booking>).
+*          IF <booking_wo_numbers>-booking_id IS INITIAL.
+*            max_booking_id += 10 .
+*            <mapped_booking>-booking_id = max_booking_id .
+*          ENDIF.
+*        ENDLOOP.
+*
+*      ENDLOOP.
+*
+*    ENDLOOP.
+*  ENDMETHOD.
 
-    READ ENTITIES OF z_i_travel_5364 IN LOCAL MODE
-      ENTITY Travel BY \_Booking
-        FROM CORRESPONDING #( entities )
-        LINK DATA(bookings)
-      FAILED failed.
-
-    " Loop over all unique TravelIDs
-    LOOP AT entities ASSIGNING FIELD-SYMBOL(<travel_group>) GROUP BY <travel_group>-travel_id.
-
-      " Get highest booking_id from bookings belonging to travel
-      max_booking_id = REDUCE #( INIT max = CONV /dmo/booking_id( '0' )
-                                 FOR  booking IN bookings USING KEY entity WHERE ( source-travel_id  = <travel_group>-travel_id )
-                                 NEXT max = COND /dmo/booking_id( WHEN booking-target-booking_id > max
-                                                                    THEN booking-target-booking_id
-                                                                    ELSE max )
-                               ).
-      " Get highest assigned booking_id from incoming entities
-      max_booking_id = REDUCE #( INIT max = max_booking_id
-                                 FOR  entity IN entities USING KEY entity WHERE ( travel_id  = <travel_group>-travel_id )
-                                 FOR  target IN entity-%target
-                                 NEXT max = COND /dmo/booking_id( WHEN   target-booking_id > max
-                                                                    THEN target-booking_id
-                                                                    ELSE max )
-                               ).
-
-      " Loop over all entries in entities with the same TravelID
-      LOOP AT entities ASSIGNING FIELD-SYMBOL(<travel>) USING KEY entity WHERE travel_id = <travel_group>-travel_id.
-
-        " Assign new booking-ids if not already assigned
-        LOOP AT <travel>-%target ASSIGNING FIELD-SYMBOL(<booking_wo_numbers>).
-          APPEND CORRESPONDING #( <booking_wo_numbers> ) TO mapped-booking ASSIGNING FIELD-SYMBOL(<mapped_booking>).
-          IF <booking_wo_numbers>-booking_id IS INITIAL.
-            max_booking_id += 10 .
-            <mapped_booking>-booking_id = max_booking_id .
-          ENDIF.
-        ENDLOOP.
-
-      ENDLOOP.
-
-    ENDLOOP.
-  ENDMETHOD.
-
-  METHOD earlynumbering_create.
- DATA:
-      entity        TYPE STRUCTURE FOR CREATE z_i_travel_5364,
-      travel_id_max TYPE /dmo/travel_id.
-
-    " Ensure Travel ID is not set yet (idempotent)- must be checked when BO is draft-enabled
-    LOOP AT entities INTO entity WHERE travel_id IS NOT INITIAL.
-      APPEND CORRESPONDING #( entity ) TO mapped-travel.
-    ENDLOOP.
-
-    DATA(entities_wo_travelid) = entities.
-    DELETE entities_wo_travelid WHERE travel_id IS NOT INITIAL.
-
-    " Get Numbers
-    TRY.
-        cl_numberrange_runtime=>number_get(
-          EXPORTING
-            nr_range_nr       = '01'
-            object            = '/DMO/TRV_M'
-            quantity          = CONV #( lines( entities_wo_travelid ) )
-          IMPORTING
-            number            = DATA(number_range_key)
-            returncode        = DATA(number_range_return_code)
-            returned_quantity = DATA(number_range_returned_quantity)
-        ).
-      CATCH cx_number_ranges INTO DATA(lx_number_ranges).
-        LOOP AT entities_wo_travelid INTO entity.
-          APPEND VALUE #(
-                %cid = entity-%cid
-                %key = entity-%key
-                %msg = lx_number_ranges
-            ) TO reported-travel.
-          APPEND VALUE #(
-                %cid        = entity-%cid
-                %key        = entity-%key
-            ) TO failed-travel.
-        ENDLOOP.
-        EXIT.
-    ENDTRY.
-
-    CASE number_range_return_code.
-      WHEN '1'.
-        " 1 - the returned number is in a critical range (specified under “percentage warning” in the object definition)
-        LOOP AT entities_wo_travelid INTO entity.
-          APPEND VALUE #(
-                %cid      = entity-%cid
-                %key      = entity-%key
-                %msg      = NEW /dmo/cm_flight_messages(
-                                textid = /dmo/cm_flight_messages=>number_range_depleted
-                                severity = if_abap_behv_message=>severity-warning
-                       )
-            ) TO reported-travel.
-        ENDLOOP.
-
-      WHEN '2' OR '3'.
-        " 2 - the last number of the interval was returned
-        " 3 - if fewer numbers are available than requested,  the return code is 3
-        LOOP AT entities_wo_travelid INTO entity.
-          APPEND VALUE #(
-                %cid      = entity-%cid
-                %key      = entity-%key
-                %msg      = NEW /dmo/cm_flight_messages(
-                                textid = /dmo/cm_flight_messages=>not_sufficient_numbers
-                                severity = if_abap_behv_message=>severity-error )
-            ) TO reported-travel.
-          APPEND VALUE #(
-                %cid        = entity-%cid
-                %key        = entity-%key
-                %fail-cause = if_abap_behv=>cause-conflict
-            ) TO failed-travel.
-        ENDLOOP.
-        EXIT.
-    ENDCASE.
-
-    " At this point ALL entities get a number!
-    ASSERT number_range_returned_quantity = lines( entities_wo_travelid ).
-
-    travel_id_max = number_range_key - number_range_returned_quantity.
-
-    " Set Travel ID
-    LOOP AT entities_wo_travelid INTO entity.
-      travel_id_max += 1.
-      entity-travel_id = travel_id_max .
-
-      APPEND VALUE #(
-          %cid      = entity-%cid
-          %key      = entity-%key
-        ) TO mapped-travel.
-    ENDLOOP.
-
-  ENDMETHOD.
+*  METHOD earlynumbering_create.
+* DATA:
+*      entity        TYPE STRUCTURE FOR CREATE z_i_travel_5364,
+*      travel_id_max TYPE /dmo/travel_id.
+*
+*    " Ensure Travel ID is not set yet (idempotent)- must be checked when BO is draft-enabled
+*    LOOP AT entities INTO entity WHERE travel_id IS NOT INITIAL.
+*      APPEND CORRESPONDING #( entity ) TO mapped-travel.
+*    ENDLOOP.
+*
+*    DATA(entities_wo_travelid) = entities.
+*    DELETE entities_wo_travelid WHERE travel_id IS NOT INITIAL.
+*
+*    " Get Numbers
+*    TRY.
+*        cl_numberrange_runtime=>number_get(
+*          EXPORTING
+*            nr_range_nr       = '01'
+*            object            = '/DMO/TRV_M'
+*            quantity          = CONV #( lines( entities_wo_travelid ) )
+*          IMPORTING
+*            number            = DATA(number_range_key)
+*            returncode        = DATA(number_range_return_code)
+*            returned_quantity = DATA(number_range_returned_quantity)
+*        ).
+*      CATCH cx_number_ranges INTO DATA(lx_number_ranges).
+*        LOOP AT entities_wo_travelid INTO entity.
+*          APPEND VALUE #(
+*                %cid = entity-%cid
+*                %key = entity-%key
+*                %msg = lx_number_ranges
+*            ) TO reported-travel.
+*          APPEND VALUE #(
+*                %cid        = entity-%cid
+*                %key        = entity-%key
+*            ) TO failed-travel.
+*        ENDLOOP.
+*        EXIT.
+*    ENDTRY.
+*
+*    CASE number_range_return_code.
+*      WHEN '1'.
+*        " 1 - the returned number is in a critical range (specified under “percentage warning” in the object definition)
+*        LOOP AT entities_wo_travelid INTO entity.
+*          APPEND VALUE #(
+*                %cid      = entity-%cid
+*                %key      = entity-%key
+*                %msg      = NEW /dmo/cm_flight_messages(
+*                                textid = /dmo/cm_flight_messages=>number_range_depleted
+*                                severity = if_abap_behv_message=>severity-warning
+*                       )
+*            ) TO reported-travel.
+*        ENDLOOP.
+*
+*      WHEN '2' OR '3'.
+*        " 2 - the last number of the interval was returned
+*        " 3 - if fewer numbers are available than requested,  the return code is 3
+*        LOOP AT entities_wo_travelid INTO entity.
+*          APPEND VALUE #(
+*                %cid      = entity-%cid
+*                %key      = entity-%key
+*                %msg      = NEW /dmo/cm_flight_messages(
+*                                textid = /dmo/cm_flight_messages=>not_sufficient_numbers
+*                                severity = if_abap_behv_message=>severity-error )
+*            ) TO reported-travel.
+*          APPEND VALUE #(
+*                %cid        = entity-%cid
+*                %key        = entity-%key
+*                %fail-cause = if_abap_behv=>cause-conflict
+*            ) TO failed-travel.
+*        ENDLOOP.
+*        EXIT.
+*    ENDCASE.
+*
+*    " At this point ALL entities get a number!
+*    ASSERT number_range_returned_quantity = lines( entities_wo_travelid ).
+*
+*    travel_id_max = number_range_key - number_range_returned_quantity.
+*
+*    " Set Travel ID
+*    LOOP AT entities_wo_travelid INTO entity.
+*      travel_id_max += 1.
+*      entity-travel_id = travel_id_max .
+*
+*      APPEND VALUE #(
+*          %cid      = entity-%cid
+*          %key      = entity-%key
+*        ) TO mapped-travel.
+*    ENDLOOP.
+*
+*  ENDMETHOD.
 
 ENDCLASS.
 
