@@ -157,7 +157,7 @@ CLASS lhc_Travel IMPLEMENTATION.
   METHOD get_authorizations.
 
 *    DATA(lv_user) = 'GMINO'. "CB9980005364
-    DATA(lv_user) = 'CB9980003622'.
+    DATA(lv_user) = 'CB9980001065'.
     DATA(lv_auth) = COND #( WHEN cl_abap_context_info=>get_user_technical_name(  ) EQ lv_user
                             THEN if_abap_behv=>auth-allowed
                             ELSE if_abap_behv=>auth-unauthorized ).

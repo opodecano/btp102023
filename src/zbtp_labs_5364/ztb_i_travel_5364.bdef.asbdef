@@ -69,8 +69,8 @@ etag master last_changed_at
 {
 
   field ( readonly ) travel_id, booking_id;
-  field ( readonly ) booking_supplement_id, supplement_id;
-  field ( mandatory : create ) price;
+  field ( readonly : update ) booking_supplement_id;
+ field ( mandatory : create ) booking_supplement_id, supplement_id, price;
   association _Travel;
   association _Booking;
 

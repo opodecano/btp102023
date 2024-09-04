@@ -10,7 +10,7 @@
             value: 'BookingSupplementID'
         }}
 }
-annotate entity ZTB_C_BOOKSUP_5364
+annotate entity ztb_c_booksup_5364
     with 
 {
   @UI.facet: [{ id: 'BookingSupplement',
@@ -22,18 +22,19 @@ annotate entity ZTB_C_BOOKSUP_5364
   TravelID;
   @Search.defaultSearchElement: true
   BookingID;
-  @UI: { lineItem: [ { position: 10, importance: #HIGH } ],
-  identification: [ { position: 10 } ] }
+  @UI: { lineItem: [ { position: 20, importance: #HIGH } ],
+  identification: [ { position: 20 } ] }
+  @Search.defaultSearchElement: true
   BookingSupplementID;
 
-  @UI: { lineItem:       [ { position: 20, importance: #HIGH } ],
-         identification: [ { position: 20 } ] }
+  @UI: { lineItem:       [ { position: 30, importance: #HIGH } ],
+         identification: [ { position: 30 } ] }
   @Consumption.valueHelpDefinition: [ {entity: {name: '/DMO/I_SUPPLEMENT', element: 'SupplementID' } ,
                                        additionalBinding: [ { localElement: 'Price',  element: 'Price' },
                                                             { localElement: 'CurrencyCode', element: 'CurrencyCode' }] }]
   SupplementID;
-  @UI: { lineItem: [ { position: 30, importance: #HIGH } ],
-  identification: [ { position: 30 } ] }
+  @UI: { lineItem: [ { position: 40, importance: #HIGH } ],
+  identification: [ { position: 40 } ] }
   Price;
   @Consumption.valueHelpDefinition: [{entity: {name: 'I_Currency', element: 'Currency' }}]
   CurrencyCode;

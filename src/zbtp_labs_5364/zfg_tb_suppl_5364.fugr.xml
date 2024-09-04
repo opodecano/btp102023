@@ -2,46 +2,20 @@
 <abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
-   <AREAT>Supplements update</AREAT>
+   <AREAT>Supplements Update</AREAT>
    <INCLUDES>
-    <SOBJ_NAME>LZFG_SUPPL_5364TOP</SOBJ_NAME>
-    <SOBJ_NAME>SAPLZFG_SUPPL_5364</SOBJ_NAME>
+    <SOBJ_NAME>LZFG_TB_SUPPL_5364TOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZFG_TB_SUPPL_5364</SOBJ_NAME>
    </INCLUDES>
    <FUNCTIONS>
     <item>
-     <FUNCNAME>ZFUNCTION_MODULES</FUNCNAME>
-     <SHORT_TEXT>FUNCTION MODULES</SHORT_TEXT>
-     <IMPORT>
-      <RSIMP>
-       <PARAMETER>EMPLOYEE_ID</PARAMETER>
-       <TYP>ZEMPLOYEE_01-EMPLOYEE_ID</TYP>
-      </RSIMP>
-     </IMPORT>
-     <EXPORT>
-      <RSEXP>
-       <PARAMETER>E_DATA</PARAMETER>
-       <TYP>ZEMPLOYEEE</TYP>
-      </RSEXP>
-     </EXPORT>
-     <DOCUMENTATION>
-      <RSFDO>
-       <PARAMETER>EMPLOYEE_ID</PARAMETER>
-       <KIND>P</KIND>
-      </RSFDO>
-      <RSFDO>
-       <PARAMETER>E_DATA</PARAMETER>
-       <KIND>P</KIND>
-      </RSFDO>
-     </DOCUMENTATION>
-    </item>
-    <item>
-     <FUNCNAME>Z_SUPPL_5364</FUNCNAME>
-     <SHORT_TEXT>Update supplements</SHORT_TEXT>
+     <FUNCNAME>Z_TB_SUPP_5364</FUNCNAME>
+     <SHORT_TEXT>Update TB Supplements</SHORT_TEXT>
      <IMPORT>
       <RSIMP>
        <PARAMETER>IT_SUPPLEMENTS</PARAMETER>
        <REFERENCE>X</REFERENCE>
-       <TYP>ZTT_SUPPL_5364</TYP>
+       <TYP>ZTT_TB_SUPPL_5364</TYP>
       </RSIMP>
       <RSIMP>
        <PARAMETER>IV_OP_TYPE</PARAMETER>

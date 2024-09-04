@@ -1,0 +1,4 @@
+@EndUserText.label: 'Employees'
+define service Zsd_employees_5364 {
+  expose Z_C_EMPLOYEE_5364 as Employees;
+}
