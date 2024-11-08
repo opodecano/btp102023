@@ -1,8 +1,8 @@
-FUNCTION zfunction_modules.
+FUNCTION zabdc.
 *"----------------------------------------------------------------------
 *"*"Local Interface:
 *"  IMPORTING
-*"     VALUE(EMPLOYEE_ID) TYPE  ZEMPLOYEE_01-EMPLOYEE_ID
+*"     VALUE(VAGE) TYPE  ZEMPLOYEE_01-AGE
 *"  EXPORTING
 *"     VALUE(E_DATA) TYPE  ZEMPLOYEEE
 *"----------------------------------------------------------------------
@@ -11,7 +11,7 @@ FUNCTION zfunction_modules.
 
   SELECT *
     FROM ZEMPLOYEE_01
-    WHERE employee_id = @EMPLOYEE_ID
+    WHERE age > 30
      INTO table @it_tab.
 
   IF sy-subrc = 0.

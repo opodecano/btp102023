@@ -9,6 +9,32 @@
    </INCLUDES>
    <FUNCTIONS>
     <item>
+     <FUNCNAME>ZABDC</FUNCNAME>
+     <SHORT_TEXT>ijwe</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>VAGE</PARAMETER>
+       <TYP>ZEMPLOYEE_01-AGE</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>E_DATA</PARAMETER>
+       <TYP>ZEMPLOYEEE</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>VAGE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_DATA</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
      <FUNCNAME>ZFUNCTION_MODULES</FUNCNAME>
      <SHORT_TEXT>FUNCTION MODULES</SHORT_TEXT>
      <IMPORT>
@@ -30,6 +56,30 @@
       </RSFDO>
       <RSFDO>
        <PARAMETER>E_DATA</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZLOKESH_DATE</FUNCNAME>
+     <SHORT_TEXT>date</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>INPUT</PARAMETER>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>OUTPUT</PARAMETER>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>INPUT</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>OUTPUT</PARAMETER>
        <KIND>P</KIND>
       </RSFDO>
      </DOCUMENTATION>

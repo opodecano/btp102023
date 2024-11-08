@@ -1,0 +1,69 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI: {
+    headerInfo: {
+    typeName: 'Orders',
+    typeNamePlural: 'Sales Orders',
+    typeImageUrl: 'https://cdn3d.iconscout.com/3d/premium/thumb/amazon-3d-icon-download-in-png-blend-fbx-gltf-file-formats--logo-mobile-application-phone-cyber-deals-elements-pack-festival-days-icons-5915024.png',
+    imageUrl: '',
+    title: {
+        type: #STANDARD,
+        value: 'Id'
+    },
+    description: {
+        type: #STANDARD,
+        value: 'Email'
+    }
+  }
+}
+annotate entity zc_header_5364 with
+{
+  @UI.facet: [{ id        : 'Headers',
+                purpose   : #STANDARD,
+                type      : #IDENTIFICATION_REFERENCE,
+                label     : 'Sales Order Header',
+                position  : 10 },
+              { id            : 'Items',
+                purpose       : #STANDARD,
+                type          : #LINEITEM_REFERENCE,
+                label         : 'Sales Order Items',
+                position      : 20,
+                targetElement : '_Items'}]
+  @UI: {
+      lineItem        : [{ position: 10, importance: #HIGH }],
+      identification  : [{ position: 10, label: 'Order ID' }]}
+  Id;
+  @UI: {
+      lineItem        : [{ position: 20, importance: #HIGH }],
+      identification  : [{ position: 20, label: 'Email' }]}
+  Email;
+  @Search.defaultSearchElement: true
+  @UI: {
+      lineItem        : [{ position: 30, importance: #HIGH }],
+      identification  : [{ position: 30, label: 'First Name' }]}
+  FirstName;
+  @UI: {
+      lineItem        : [{ position: 40, importance: #HIGH }],
+      identification  : [{ position: 40, label: 'Last Name' }]}
+  LastName;
+  @UI: {
+      lineItem        : [{ position: 50, importance: #HIGH }],
+      identification  : [{ position: 50, label: 'Country' }]}
+  Country;
+  @UI: {
+      lineItem        : [{ position: 60, importance: #HIGH }],
+      identification  : [{ position: 60, label: 'Created On' }]}
+  Createon;
+  @UI: {
+      lineItem        : [{ position: 70, importance: #HIGH }],
+      identification  : [{ position: 70, label: 'Delivery Date' }]}
+  DeliveryDate;
+  @UI: {
+       lineItem        : [{ position: 80, importance: #HIGH, criticality: 'OrderStatus' }],
+       identification  : [{ position: 85, label: 'Status [3(Open)|2(Accepted)|1(Canceled)]' }]  }
+  OrderStatus;
+  @UI.hidden: true
+  StatusCriticality;
+  @UI.hidden: true
+  ImageUrl;
+}

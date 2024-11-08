@@ -1,0 +1,31 @@
+managed implementation in class zbp_i_header_5364 unique;
+strict;
+
+define behavior for zi_header_5364 alias Header
+persistent table ztb_header_5364
+lock master
+authorization master ( instance )
+//etag master <field_name>
+early numbering
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) Id;
+  field ( mandatory : create ) Email;
+
+  association _Items { create; }
+}
+
+define behavior for zi_items_5364 alias Items
+persistent table ztb_items_5364
+lock dependent by _Orders
+authorization dependent by _Orders
+//etag master <field_name>
+early numbering
+{
+  update;
+  delete;
+  field ( readonly ) Id, OrderId;
+  association _Orders;
+}

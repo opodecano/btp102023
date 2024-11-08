@@ -1,0 +1,21 @@
+projection;
+strict;
+
+
+define behavior for zc_header_5364 alias Header
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Items { create; }
+}
+
+define behavior for zc_items_5364 alias Items
+{
+  use update;
+  use delete;
+
+
+  use association _Orders;
+}

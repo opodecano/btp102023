@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition Header'
+define service ZSD_Header_5364 {
+  expose zc_header_5364;
+  expose zc_items_5364;
+}
